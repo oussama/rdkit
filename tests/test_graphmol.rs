@@ -9,6 +9,13 @@ fn test_rdmol() {
 }
 
 #[test]
+fn test_ro_mol_draw() {
+    cxx::let_cxx_string!(smile = "c1ccccc1CCCCCCCC");
+    let romol = rdkit_sys::ro_mol_ffi::smiles_to_mol(&smile).unwrap();
+    rdkit_sys::ro_mol_ffi::draw_mol(romol);
+}
+
+#[test]
 fn test_neutralize() {
     let smiles = "CCOC(=O)C(C)(C)OC1=CC=C(C=C1)Cl.CO.C1=CC(=CC=C1C(=O)N[C@@H](CCC(=O)O)C(=O)O)NCC2=CN=C3C(=N2)C(=O)NC(=N3)N";
     let romol = ROMol::from_smile(smiles).unwrap();

@@ -10,6 +10,9 @@ pub struct ROMol {
 }
 
 impl ROMol {
+    pub fn to_default_svg(&self) -> String {
+        rdkit_sys::ro_mol_ffi::draw_mol(self.ptr.clone())
+    }
     pub fn from_smile(smile: &str) -> Result<Self, cxx::Exception> {
         let_cxx_string!(smile_cxx_string = smile);
         let ptr = ro_mol_ffi::smiles_to_mol(&smile_cxx_string)?;
@@ -36,6 +39,11 @@ impl ROMol {
 
     pub fn fingerprint(&self) -> Fingerprint {
         let ptr = fingerprint_ffi::fingerprint_mol(self.ptr.clone());
+        Fingerprint::new(ptr)
+    }
+
+    pub fn maccs(&self) -> Fingerprint {
+        let ptr = rdkit_sys::fingerprint_ffi::maccs(self.ptr.clone());
         Fingerprint::new(ptr)
     }
 }
