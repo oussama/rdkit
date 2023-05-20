@@ -13,7 +13,7 @@ cxx = "1"
 log = "0.4"
 # rdkit-sys = "0.2.16"
 # rdkit-sys = { path = "../rdkit-sys"}
-rdkit-sys = { git = "https://github.com/instapunchout/rdkit-sys.git", features=["dynamic-linking-from-conda", rev="b62ebb5"]}
+rdkit-sys = { git = "https://github.com/instapunchout/rdkit-sys.git", features=["dynamic-linking-from-conda"], rev="b62ebb5"]}
 flate2 = "1"
 
 [dev-dependencies]
